@@ -1,0 +1,296 @@
+<html>
+<style> 
+    #startScreen {
+        position: absolute;
+        top: 30vh;
+        left: 10vw;
+        width: 80vw;
+        height: 40vh;
+        background-color: gray;
+        /* display: none; /* block */
+        
+    }
+    
+    #instructions {
+        position: absolute;
+        top: 20%;
+        left: 10%;
+        width: 80%;
+        height: 40%;
+        background-color: gray;
+        text-align: center;
+    }
+    
+    #gameScreen {
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+        width: 73vw;
+        height: 85vh;
+        background-image: url(./wireframe3.jpg);
+        display: none;
+        overflow: hidden;
+    }
+    
+    #endScreen {
+        position: absolute;
+        top: 30vh;
+        left: 10vw;
+        width: 80vw;
+        height: 40vh;
+        background-color: black;
+        display: none; /* block */
+    }
+    
+    #startBTN {
+        position: absolute;
+        top: 30%;
+        left: 10%;
+        width: 80%;
+        height: 40%;
+        background-color: lightgray;
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    #flowerTop {
+        position: absolute;
+        top: 50%;
+        left: 9%;
+        width: 15%;
+        height: 15%;
+        background-color: hotpink;
+        border-radius: 50%;
+        transform: translateY(60%);
+    }
+    
+    #flowerBottom {
+        position: absolute;
+        top: 73%;
+        left: 16%;
+        width: 2%;
+        height: 15%;
+        background-color: lightgreen;
+        transform: translateY(1%);
+        
+        
+    }
+    
+  
+    
+    #wateringCan {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10%;
+        height: 10%;
+        background-color: blue;
+    }
+    
+    #endBTN {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        width: 5%;
+        height: 5%;
+        background-color: black;
+        cursor: pointer;
+    }
+    
+    #restartBTN {
+        position: absolute;
+        top: 30%;
+        left: 10%;
+        width: 80%;
+        height: 40%;
+        background-color: lightgray;
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    #congrats {
+        position: absolute;
+        top: 5%;
+        left: 10%;
+        width: 80%;
+        height: 20%;
+        background-color: yellow;
+        text-align: center;
+    }
+    
+    #workflow{
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+        width: 73vw;
+        height: 85vh;
+        background-image: url(./workflow.jpg);
+        display: none;
+    }
+    
+    #workflowBTN {
+        position: absolute;
+        top: 90%;
+        left: 40%;
+        width:20%;
+        height: 10%;
+        background-color: black;
+        cursor: pointer;
+    }
+    
+    #homeBTN {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        width: 20%;
+        height: 7%;
+        background-color: black;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+<div id="startScreen"> 
+    <div id="instructions">Instructions: Click on the blue watering can to make the flower grow! </div>
+    
+    <div id="startBTN"></div>
+    <div id="workflowBTN"></div>
+    </div>
+    
+<div id="workflow">
+    
+    <div id="homeBTN"></div>
+    </div>
+<div id="gameScreen"> 
+    <div id="flowerTop"></div>
+    <div id="wateringCan"></div>
+    <div id="flowerBottom"></div>
+    <div id="flowerInside"></div>
+    <div id="endBTN"></div>
+    
+    
+    
+    </div>
+<div id="endScreen"> 
+    <div id="congrats"> Congrats on growing the flower!</div>
+    <div id="restartBTN"></div>
+    </div>
+    
+    <script>
+        var myStartScreen;
+        myStartScreen =
+        document.querySelector("#startScreen");
+        
+        var myGameScreen;
+        myGameScreen = 
+        document.querySelector("#gameScreen");
+        
+        var myEndScreen;
+        myEndScreen = 
+        document.querySelector("#endScreen");
+        
+        var myWorkflowScreen;
+        myWorkflowScreen =
+            document.querySelector("#workflow");
+        
+        var myStartBTN;
+        myStartBTN =
+        document.querySelector("#startBTN");
+        
+    
+        
+        
+        myStartBTN.innerHTML ="START";
+        myStartBTN.style.textAlign = "center";
+        myStartBTN.style.fontSize= "3em";
+        myStartBTN.addEventListener("click", hideStartShowGame, false);
+        
+        var myWateringCan;
+        myWateringCan = document.querySelector("#wateringCan");
+        
+        
+        var myFlowerTop = document.querySelector("#flowerTop");
+        var myFlowerBottom = document.querySelector("#flowerBottom");
+        
+        var positionY = 0;
+        
+        
+        myWateringCan.addEventListener("click", growFlower, false);
+        
+        
+        function growFlower() {
+            positionY = positionY + -100;
+            // positionY + 10;
+            
+            // where is the flowerTop?
+            myFlowerTop.style.transform = "translateY("+positionY+"%)"
+            myFlowerBottom.style.transform = "translateY("+positionY+"%)"
+            // how can I change the position of flowerTop?
+        }
+    
+        var myEndBTN;
+        myEndBTN = 
+            document.querySelector("#endBTN");
+        
+        myEndBTN.innerHTML = "Exit";
+        myEndBTN.style.textAlign = "center";
+        myEndBTN.style.fontsize= "3em";
+        myEndBTN.style.color="white";
+        myEndBTN.addEventListener("click", showEndScreen, false);
+        
+        function hideStartShowGame() {
+            myStartScreen.style.display= "none";
+            myGameScreen.style.display= "block";
+        }
+    
+        function showEndScreen() {
+            myGameScreen.style.display= "none";
+            myEndScreen.style.display="block";
+        }
+        
+        var myRestartBTN;
+        myRestartBTN = 
+            document.querySelector("#restartBTN");
+        
+        myRestartBTN.innerHTML = "PLAY AGAIN";
+        myRestartBTN.style.textAlign = "center";
+        myRestartBTN.style.fontsize= "3em";
+        myRestartBTN.addEventListener("click", showStartScreen, false);
+        
+        function showStartScreen() {
+            myEndScreen.style.display="none";
+            myStartScreen.style.display="block";
+        }
+        
+       
+        var myWorkflowBTN;
+        myWorkflowBTN = 
+            document.querySelector("#workflowBTN");
+        myWorkflowBTN.innerHTML = "Workflow";
+        myWorkflowBTN.style.textAlign = "center";
+        myWorkflowBTN.style.fontsize= "3em";
+        myWorkflowBTN.style.color="white";
+        myWorkflowBTN.addEventListener("click", showWorkflowScreen, false);
+        
+        function showWorkflowScreen() {
+            myStartScreen.style.display="none";
+            myWorkflowScreen.style.display="block";
+        }
+        
+        var myHomeBTN;
+        myHomeBTN = 
+            document.querySelector("#homeBTN");
+         myHomeBTN.innerHTML = "Back";
+        myHomeBTN.style.textAlign = "center";
+        myHomeBTN.style.fontsize= "3em";
+        myHomeBTN.style.color="white";
+        myHomeBTN.addEventListener("click", showHomeScreen, false);
+        
+        function showHomeScreen() {
+            myWorkflowScreen.style.display="none";
+            myStartScreen.style.display="block";
+        }
+    </script>
+
+</body>
+</html>
